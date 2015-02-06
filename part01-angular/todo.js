@@ -1,5 +1,5 @@
 angular.module('app', [])
-  .controller('TodoController', ['$scope', function($scope) {
+  .controller('TodoController', function($scope) {
       $scope.form = {};
       $scope.tasks = [];
       
@@ -14,4 +14,4 @@ angular.module('app', [])
               $scope.tasks.splice(index, 1);
           }
       }
-  }]);
+  });
