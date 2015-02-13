@@ -1,17 +1,20 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     app = express();
+    
+var redis = require('redis').createClient();
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
-var tasks = [];
 app.get('/api/todo', function(req, res) {
-    res.json(tasks);
+    redis.get('todo', function(err, reply) {
+        res.json(JSON.parse(reply) || []);
+    });
 });
 
 app.post('/api/todo', function(req, res) {
-    tasks = req.body;
+    redis.set('todo', JSON.stringify(req.body));
     res.end();
 });
 
