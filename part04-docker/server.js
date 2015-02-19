@@ -1,8 +1,7 @@
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    app = express();
-
-var redis = require('redis').createClient();
+var bodyParser = require('body-parser'),
+    express = require('express'),
+    app = express(),
+    redis = require('redis').createClient(6379, process.env.redis_host || 'localhost');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
