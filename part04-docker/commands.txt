@@ -1,0 +1,22 @@
+# clean up
+
+docker rm my_redis
+docker rm my_app
+
+# run bash on the latest ubuntu
+
+docker run -t -i ubuntu /bin/bash
+
+# run redis and todo app in two containers
+
+docker build -t todo .
+docker run --name my_redis redis
+docker run --name my_app --link my_redis:redis -P todo
+docker port my_app
+
+# optional redis demo
+
+docker run -t -i --link my_redis:redis ubuntu /bin/bash
+telnet redis 6379
+SET city Poznan
+GET city

@@ -1,6 +1,6 @@
 FROM nodesource/node:wheezy
 
-ADD * /app/
+ADD src /app
 
 WORKDIR /app
 ENV redis_host=redis
