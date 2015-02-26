@@ -1,0 +1,5 @@
+heroku create
+heroku addons:add redistogo
+git push heroku part05-paas:master
+# heroku ps:scale web=1
+heroku open
