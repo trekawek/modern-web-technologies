@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+        <title>TODO list</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#/">TODO</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div ng-controller="TodoController">
+
+                <h3>Tasks</h3>
+
+                <div ng-show="!tasks.length" class="alert alert-success" role="alert">
+                    <b>Well done!</b> You have nothing to do!
+                </div>
+                
+                <ul class="list-group">
+                    <li ng-repeat="task in tasks" class="list-group-item">
+                        <span class="pull-right">
+                            <button class="btn btn-xs btn-danger" ng-click="removeTask(task)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                        {{task.desc}}
+                    </li>
+                </ul>
+
+                <h3>Add new task</h3>
+
+                <form role="form">
+                    <div class="form-group">
+                        <label>Task description</label>
+                        <input name="desc" ng-model="form.desc" class="form-control"/>
+                    </div>
+                    <button ng-click="addTask()" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+        <script src="todo.js"></script>
+    </body>
+</html>
