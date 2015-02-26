@@ -10,6 +10,7 @@ if (process.env.REDISTOGO_URL) {
     var redis = require("redis").createClient();
 }
 
+app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
@@ -24,6 +25,6 @@ app.post('/api/todo', function(req, res) {
     res.end();
 });
 
-var server = app.listen(3000, function() {
-  console.log('Listening on port 3000');
+var server = app.listen(app.get('port'), function() {
+  console.log('Listening on port ' + app.get('port'));
 });
